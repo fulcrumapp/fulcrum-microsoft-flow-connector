@@ -1,0 +1,9 @@
+{
+  "connectorId": "shared_fulcrum-5fc0a6f8c55ad7e8f7-5f3a5236b0aa60e80a",
+  "environment": "Default-52980fd8-4432-4ca2-8be0-7b5fc957bd83",
+  "apiProperties": "apiProperties.json",
+  "apiDefinition": "apiDefinition.swagger.json",
+  "icon": "icon.png",
+  "powerAppsUrl": "https://api.powerapps.com",
+  "powerAppsApiVersion": "2016-11-01"
+}

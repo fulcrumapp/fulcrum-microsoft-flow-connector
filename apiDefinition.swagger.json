@@ -1,0 +1,361 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Fulcrum",
+    "description": "This connector gives you the ability to setup a webhook in Fulcrum as a trigger or connect your Fulcrum data through the Query API.",
+    "version": "1.0",
+    "contact": {
+      "name": "Fulcrum",
+      "url": "https://help.fulcrumapp.com",
+      "email": "support@fulcrumapp.com"
+    }
+  },
+  "host": "api.fulcrumapp.com",
+  "basePath": "/api/v2",
+  "schemes": [
+    "https"
+  ],
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://www.fulcrumapp.com/"
+    },
+    {
+      "propertyName": "Privacy policy",
+      "propertyValue": "https://www.fulcrumapp.com/privacy/"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "Website"
+    }
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/query": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fields": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "name"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "type"
+                      }
+                    }
+                  },
+                  "description": "fields"
+                },
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "name"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "type"
+                      },
+                      "parent": {
+                        "type": "string",
+                        "description": "parent"
+                      },
+                      "form_id": {
+                        "type": "string",
+                        "description": "form_id"
+                      },
+                      "field": {
+                        "type": "string",
+                        "description": "field"
+                      },
+                      "field_type": {
+                        "type": "string",
+                        "description": "field_type"
+                      },
+                      "data_name": {
+                        "type": "string",
+                        "description": "data_name"
+                      }
+                    }
+                  },
+                  "description": "rows"
+                },
+                "time": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "time"
+                },
+                "date": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "date"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Fulcrum Query API Connector",
+        "description": "Get your Fulcrum data through Fulcrum's Query API",
+        "operationId": "query",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Fulcrum API Token",
+            "x-ms-summary": "Fulcrum API Token"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "default": "SELECT * FROM tables",
+            "description": "Query",
+            "x-ms-summary": "Query to select Fulcrum Data"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "default": "json",
+            "description": "Format of returned data",
+            "x-ms-summary": "Format of returned data"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 20000,
+            "description": "Number of results returned per page. To be used with page",
+            "x-ms-summary": "Number of results returned in response. To be used with page parameter."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 1,
+            "description": "Page number of returned results.  To be used with per_page",
+            "x-ms-summary": "Page number of returned results. To be used with per_page parameter."
+          }
+        ]
+      }
+    },
+    "/webhooks.json": {
+      "x-ms-notification-content": {
+        "description": "Fulcrum Webhook Response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "id"
+            },
+            "type": {
+              "type": "string",
+              "description": "type"
+            },
+            "owner_id": {
+              "type": "string",
+              "description": "owner_id"
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "description": "status"
+                },
+                "version": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "version"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "id"
+                },
+                "form_id": {
+                  "type": "string",
+                  "description": "form_id"
+                },
+                "project_id": {
+                  "type": "string",
+                  "description": "project_id"
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "created_at"
+                },
+                "updated_at": {
+                  "type": "string",
+                  "description": "updated_at"
+                },
+                "client_created_at": {
+                  "type": "string",
+                  "description": "client_created_at"
+                },
+                "client_updated_at": {
+                  "type": "string",
+                  "description": "client_updated_at"
+                },
+                "created_by": {
+                  "type": "string",
+                  "description": "created_by"
+                },
+                "created_by_id": {
+                  "type": "string",
+                  "description": "created_by_id"
+                },
+                "updated_by": {
+                  "type": "string",
+                  "description": "updated_by"
+                },
+                "updated_by_id": {
+                  "type": "string",
+                  "description": "updated_by_id"
+                },
+                "assigned_to": {
+                  "type": "string",
+                  "description": "assigned_to"
+                },
+                "assigned_to_id": {
+                  "type": "string",
+                  "description": "assigned_to_id"
+                },
+                "form_values": {
+                  "type": "object",
+                  "properties": {},
+                  "description": "form_values"
+                },
+                "latitude": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "latitude"
+                },
+                "longitude": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "longitude"
+                },
+                "altitude": {
+                  "type": "string",
+                  "description": "altitude"
+                },
+                "speed": {
+                  "type": "string",
+                  "description": "speed"
+                },
+                "course": {
+                  "type": "string",
+                  "description": "course"
+                },
+                "horizontal_accuracy": {
+                  "type": "string",
+                  "description": "horizontal_accuracy"
+                },
+                "vertical_accuracy": {
+                  "type": "string",
+                  "description": "vertical_accuracy"
+                }
+              },
+              "description": "data"
+            }
+          }
+        }
+      },
+      "post": {
+        "responses": {},
+        "summary": "Fulcrum Webhook",
+        "description": "fulcrum-webhook",
+        "operationId": "Fulcrum-webhook",
+        "x-ms-trigger": "single",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "default": "application/json",
+            "type": "string",
+            "x-ms-summary": "Accept header parameter",
+            "description": "Appect header"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "default": "application/json",
+            "type": "string",
+            "x-ms-summary": "Content-Type header parameter",
+            "description": "Content-Type header"
+          },
+          {
+            "name": "X-ApiToken",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Fulcrum API Token",
+            "description": "Fulcrum API Token"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "webhook": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "name"
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "url",
+                      "x-ms-notification-url": true,
+                      "title": "",
+                      "x-ms-visibility": "internal"
+                    }
+                  },
+                  "description": "webhook",
+                  "required": [
+                    "url"
+                  ]
+                }
+              },
+              "required": [
+                "webhook"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {},
+  "security": [],
+  "tags": []
+}
